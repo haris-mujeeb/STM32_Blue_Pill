@@ -1,0 +1,2 @@
+Remove Pin=*1-2 From Net=D_N
+Remove Pin=S1-2 From Net=NRST

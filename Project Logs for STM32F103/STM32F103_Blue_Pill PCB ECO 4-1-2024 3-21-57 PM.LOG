@@ -1,0 +1,3 @@
+Change Component DesignItemId : Designator=*1 Old DesignItemId=CMP-002-00071-7 New DesignItemId=CMP-002-00071-9
+Change Component Designator: OldDesignator=*1 NewDesignator=J5
+Change Managed Component Library Link : Designator=J5 Old VaultGUID=D0919A70-71F9-4A8F-9AAE-C2023AD986C1 New VaultGUID=D0919A70-71F9-4A8F-9AAE-C2023AD986C1 Old ItemGUID=dd825869-1d43-43ad-9113-c0b439bcf8de New ItemGUID=dd825869-1d43-43ad-9113-c0b439bcf8de Old RevisionGUID=b0169c7c-cc19-475c-9f16-20a57a77d4aa New RevisionGUID=b348dfde-ebed-4cda-bb8b-2e3c91b700f0

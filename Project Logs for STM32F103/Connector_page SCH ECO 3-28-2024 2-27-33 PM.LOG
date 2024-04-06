@@ -1,0 +1,9 @@
+Remove Pin=S1-2 From Net=NRST
+Change Component Footprint: Designator=P1 Old Footprint=61300911121 New Footprint=61300911121
+Change Component Footprint: Designator=P2 Old Footprint=61300911121 New Footprint=61300911121
+Change Component Footprint: Designator=P3 Old Footprint=61300911121 New Footprint=61300911121
+Change Component Footprint: Designator=P4 Old Footprint=61300911121 New Footprint=61300911121
+Change Component Designator: OldDesignator=P1 NewDesignator=P?
+Change Component Designator: OldDesignator=P2 NewDesignator=P?
+Change Component Designator: OldDesignator=P3 NewDesignator=P?
+Change Component Designator: OldDesignator=P4 NewDesignator=P?

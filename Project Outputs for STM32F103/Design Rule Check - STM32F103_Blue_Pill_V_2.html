@@ -1,0 +1,779 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 9em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD23\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">4/6/2024</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">1:03:48 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc" class="file"><acronym title="G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc">G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">145</td></tr>
+</table>
+</td>
+</table><a name="IDGUNRTNUWPIVMMSGKYRZDOOT3PIBMIZAOJTQ2NDGR304PPFIZRC0F"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDWM4X44QUNHVQN4BDHIEUT2ZXQGFPXSK1JENWH2PEZY5IAPWPMJCC">Clearance Constraint (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRE2MLECUSCVI0ITI2MH1AHT2DY5BNRUNOSQY0FBVDDGNHUQNKGH">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID3K5GF0S2J1V1MKT3BIEISCYVTID4JMRLR22XM5NARGVML3N4ANKD">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">26</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZSYOXWDQ33A4MBZLOBMMJ51U0KQJMJEI2O5HNTG45RULL4SSWYZG">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDMTE5K55I1ZTQLRRYYMSDGWHZPG4HOD0BHK4WX3P2JXZ42024MAVF">Width Constraint (Min=0.127mm) (Max=10mm) (Preferred=0.2mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRQBEJSM24U3LKIQMOVT1WNV4PG40DT5WO0FVHD1HOVGGGETFQ3B">Power Plane Connect Rule(Direct Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDEIU3RNUE4IVEKMLMI4HK1ZYIRI1GNZDEDL1I2PHBAVKAF1G3OIEK">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDZB25ENCAQBRLCUF3B1YOVKXSYHR1UULGN5WA34HKWHC1JC3QW2GB">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDJQ52RK0RWXLAM5D0GIRTYJVFRK14LXHLG413AJLQOJ2FPB1VTNJD">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">19</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDQ5X2UPAPF5ELDU41KD2I1BX1G3LIQ1GN1AK54IA2M2VEJWJFBAJ">Silk To Solder Mask (Clearance=0.15mm) (IsPad),(All)</a></td>
+<td class="column2">93</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDP2OBZ3ZKYUAQBOT1ESMVER0YRINV2Y5252IG5BIQWSCOSCOYQOUI">Silk to Silk (Clearance=0.15mm) (All),(All)</a></td>
+<td class="column2">2</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDKN1XQXO5Z3FPFN2T3XD2G4HO4FAW50MCJVY3IYJBFYECXSA0GHCD">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">5</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID5POLC2GZX2TSPQ0HXVYJQUXDK2HDGQMPJPGDMJG5AE0S3GRANDD">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">145</td>
+</tr>
+</table><br><a name="ID3K5GF0S2J1V1MKT3BIEISCYVTID4JMRLR22XM5NARGVML3N4ANKD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Un-Routed Net Constraint ( (All) )</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1820.409mil|Location2.X=1899.745mil|Location1.Y=1474.98mil|Location2.Y=1654.394mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1820.409mil|Location2.X=1899.745mil|Location1.Y=1474.98mil|Location2.Y=1654.394mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C1-1(46.99mm,41.54mm) on Bottom Layer And Pad IC1-23(47.482mm,38.236mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1535.213mil|Location2.X=1765.063mil|Location1.Y=1249.11mil|Location2.Y=1344.236mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1535.213mil|Location2.X=1765.063mil|Location1.Y=1249.11mil|Location2.Y=1344.236mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C11-1(39.746mm,33.662mm) on Bottom Layer And Pad S1-1(44.056mm,32.729mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2450.41mil|Location2.X=2599.59mil|Location1.Y=1606.473mil|Location2.Y=1644.394mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2450.41mil|Location2.X=2599.59mil|Location1.Y=1606.473mil|Location2.Y=1644.394mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C9-1(62.992mm,41.286mm) on Bottom Layer And Pad C7-1(65.278mm,41.286mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2470mil|Location2.X=2836.89mil|Location1.Y=1525.433mil|Location2.Y=1725.433mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2470mil|Location2.X=2836.89mil|Location1.Y=1525.433mil|Location2.Y=1725.433mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C7-1(65.278mm,41.286mm) on Bottom Layer And Track (69.342mm,41.286mm)(69.517mm,41.286mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2290.41mil|Location2.X=2509.59mil|Location1.Y=1535.606mil|Location2.Y=1644.394mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2290.41mil|Location2.X=2509.59mil|Location1.Y=1535.606mil|Location2.Y=1644.394mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad C8-1(58.928mm,39.486mm) on Bottom Layer And Pad C9-1(62.992mm,41.286mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2116.738mil|Location2.X=2349.59mil|Location1.Y=1535.606mil|Location2.Y=1619.224mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2116.738mil|Location2.X=2349.59mil|Location1.Y=1535.606mil|Location2.Y=1619.224mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad IC1-8(54.536mm,40.357mm) on Top Layer [Unplated] And Pad C8-1(58.928mm,39.486mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.378mil|Location2.X=2817.622mil|Location1.Y=1363.717mil|Location2.Y=1598.961mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.378mil|Location2.X=2817.622mil|Location1.Y=1363.717mil|Location2.Y=1598.961mil|Absolute=True">Un-Routed Net Constraint: Net +3V3 Between Pad D1-1(70.866mm,35.34mm) on Top Layer And Pad D2-1(70.866mm,39.912mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2180.869mil|Location2.X=2890mil|Location1.Y=1284.879mil|Location2.Y=1491.339mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2180.869mil|Location2.X=2890mil|Location1.Y=1284.879mil|Location2.Y=1491.339mil|Absolute=True">Un-Routed Net Constraint: Net +3V3 Between Track (57.887mm,35.223mm)(57.934mm,35.176mm) on Bottom Layer And Pad D1-1(70.866mm,35.34mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2605.41mil|Location2.X=2817.622mil|Location1.Y=1281.039mil|Location2.Y=1349mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2605.41mil|Location2.X=2817.622mil|Location1.Y=1281.039mil|Location2.Y=1349mil|Absolute=True">Un-Routed Net Constraint: Net NetD1_2 Between Pad R4-2(66.929mm,33.783mm) on Bottom Layer And Pad D1-2(70.866mm,33.24mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.378mil|Location2.X=2933.37mil|Location1.Y=1543.717mil|Location2.Y=1643.37mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2762.378mil|Location2.X=2933.37mil|Location1.Y=1543.717mil|Location2.Y=1643.37mil|Absolute=True">Un-Routed Net Constraint: Net +3V3 Between Pad D2-1(70.866mm,39.912mm) on Top Layer And Pad J4-4(73.406mm,40.64mm) on Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2525.41mil|Location2.X=2817.622mil|Location1.Y=1311.079mil|Location2.Y=1516.283mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2525.41mil|Location2.X=2817.622mil|Location1.Y=1311.079mil|Location2.Y=1516.283mil|Absolute=True">Un-Routed Net Constraint: Net NetD2_2 Between Pad R5-2(64.897mm,33.783mm) on Bottom Layer And Pad D2-2(70.866mm,37.812mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1769.381mil|Location2.X=1974.016mil|Location1.Y=1405.344mil|Location2.Y=1416.417mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1769.381mil|Location2.X=1974.016mil|Location1.Y=1405.344mil|Location2.Y=1416.417mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad IC1-23(47.482mm,38.236mm) on Top Layer [Unplated] And Track (45.913mm,33.437mm)(47.6mm,33.437mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1774.016mil|Location2.X=2094.656mil|Location1.Y=1216.417mil|Location2.Y=1369.381mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1774.016mil|Location2.X=2094.656mil|Location1.Y=1216.417mil|Location2.Y=1369.381mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Track (45.913mm,33.437mm)(47.6mm,33.437mm) on Bottom Layer And Pad IC1-35(50.664mm,32.242mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2010mil|Location2.X=2247.102mil|Location1.Y=1535.433mil|Location2.Y=1688.86mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2010mil|Location2.X=2247.102mil|Location1.Y=1535.433mil|Location2.Y=1688.86mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Track (51.308mm,41.54mm)(53.594mm,41.54mm) on Bottom Layer And Pad IC1-8(54.536mm,40.357mm) on Top Layer [Unplated] </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2116.738mil|Location2.X=2188.843mil|Location1.Y=1406.158mil|Location2.Y=1619.224mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2116.738mil|Location2.X=2188.843mil|Location1.Y=1406.158mil|Location2.Y=1619.224mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad IC1-8(54.536mm,40.357mm) on Top Layer [Unplated] And Via (55.245mm,36.068mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310mil|Location2.X=1584.803mil|Location1.Y=1380mil|Location2.Y=1425.276mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1310mil|Location2.X=1584.803mil|Location1.Y=1380mil|Location2.Y=1425.276mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J3-6(35.814mm,37.592mm) on Multi-Layer And Track (37.714mm,33.662mm)(39.746mm,33.662mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1201.827mil|Location2.X=1283.449mil|Location1.Y=1331.591mil|Location2.Y=1413.409mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1201.827mil|Location2.X=1283.449mil|Location1.Y=1331.591mil|Location2.Y=1413.409mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad J5-6(31.178mm,34.474mm) on Multi-Layer And Pad J5-5(31.698mm,35.599mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2256.157mil|Location2.X=2679.59mil|Location1.Y=1536mil|Location2.Y=1583.842mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2256.157mil|Location2.X=2679.59mil|Location1.Y=1536mil|Location2.Y=1583.842mil|Absolute=True">Un-Routed Net Constraint: Net XTALD Between Via (57.658mm,39.878mm) from Top Layer to Bottom Layer And Pad R3-2(67.31mm,39.496mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1665mil|Location2.X=1870mil|Location1.Y=1535.039mil|Location2.Y=1780mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1665mil|Location2.X=1870mil|Location1.Y=1535.039mil|Location2.Y=1780mil|Absolute=True">Un-Routed Net Constraint: Net NetIC1_20 Between Pad R6-2(44.831mm,41.53mm) on Bottom Layer And Track (44.958mm,42.672mm)(45.167mm,42.672mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1305mil|Location2.X=1907.795mil|Location1.Y=1154.961mil|Location2.Y=1343.78mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1305mil|Location2.X=1907.795mil|Location1.Y=1154.961mil|Location2.Y=1343.78mil|Absolute=True">Un-Routed Net Constraint: Net +3V3 Between Pad R8-2(35.687mm,31.876mm) on Bottom Layer And Track (45.888mm,31.562mm)(45.918mm,31.592mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1634.488mil|Location2.X=1907.598mil|Location1.Y=1188.543mil|Location2.Y=1416.417mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1634.488mil|Location2.X=1907.598mil|Location1.Y=1188.543mil|Location2.Y=1416.417mil|Absolute=True">Un-Routed Net Constraint: Net GND Between Pad S1-1(44.056mm,32.729mm) on Top Layer And Track (45.888mm,33.462mm)(45.913mm,33.437mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2529.409mil|Location2.X=2775.984mil|Location1.Y=1515.472mil|Location2.Y=1666.535mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2529.409mil|Location2.X=2775.984mil|Location1.Y=1515.472mil|Location2.Y=1666.535mil|Absolute=True">Un-Routed Net Constraint: Net NetC7_2 Between Track (66.787mm,41.033mm)(67.04mm,41.286mm) on Bottom Layer And Pad Y1-2(67.97mm,39.79mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=995mil|Location2.X=3105mil|Location1.Y=995mil|Location2.Y=1905mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=995mil|Location2.X=3105mil|Location1.Y=995mil|Location2.Y=1905mil|Absolute=True">Un-Routed Net Constraint: Polygon  (NONET_L01_P000) on Top Layer Dead Copper - Net Not Assigned.</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705mil|Location2.X=1907.795mil|Location1.Y=1415mil|Location2.Y=1343.78mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1705mil|Location2.X=1907.795mil|Location1.Y=1415mil|Location2.Y=1343.78mil|Absolute=True">Un-Routed Net Constraint: Net +3V3 Between Via (45.847mm,38.481mm) from Top Layer to Bottom Layer And Track (45.888mm,31.562mm)(45.918mm,31.592mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2010mil|Location2.X=2360.893mil|Location1.Y=1464.961mil|Location2.Y=1492.22mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2010mil|Location2.X=2360.893mil|Location1.Y=1464.961mil|Location2.Y=1492.22mil|Absolute=True">Un-Routed Net Constraint: Net +3V3 Between Track (51.308mm,39.75mm)(53.594mm,39.75mm) on Bottom Layer And Track (57.427mm,35.362mm)(57.681mm,35.362mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2105mil|Location2.X=2484.37mil|Location1.Y=1531.654mil|Location2.Y=1430.039mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2105mil|Location2.X=2484.37mil|Location1.Y=1531.654mil|Location2.Y=1430.039mil|Absolute=True">Un-Routed Net Constraint: Net NRST Between Via (56.007mm,41.444mm) from Top Layer to Bottom Layer And Track (60.333mm,33.553mm)(60.563mm,33.783mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDJQ52RK0RWXLAM5D0GIRTYJVFRK14LXHLG413AJLQOJ2FPB1VTNJD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Minimum Solder Mask Sliver (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2281.467mil|Location2.X=2292.717mil|Location1.Y=1561.817mil|Location2.Y=1573.067mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2281.467mil|Location2.X=2292.717mil|Location1.Y=1561.817mil|Location2.Y=1573.067mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.175mm &lt; 0.254mm) Between Pad C8-1(58.928mm,39.486mm) on Bottom Layer And Via (57.658mm,39.878mm) from Top Layer to Bottom Layer [Bottom Solder] Mask Sliver [0.175mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1895.793mil|Location2.X=1909.149mil|Location1.Y=1478.703mil|Location2.Y=1489.953mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1895.793mil|Location2.X=1909.149mil|Location1.Y=1478.703mil|Location2.Y=1489.953mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.249mm &lt; 0.254mm) Between Pad IC1-22(47.836mm,38.589mm) on Top Layer And Via (48.467mm,37.258mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.249mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890mil|Location2.X=1901.25mil|Location1.Y=1473.75mil|Location2.Y=1485mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1890mil|Location2.X=1901.25mil|Location1.Y=1473.75mil|Location2.Y=1485mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.197mm &lt; 0.254mm) Between Pad IC1-23(47.482mm,38.236mm) on Top Layer And Via (48.467mm,37.258mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.197mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1815.938mil|Location2.X=1827.188mil|Location1.Y=1503.425mil|Location2.Y=1516.9mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1815.938mil|Location2.X=1827.188mil|Location1.Y=1503.425mil|Location2.Y=1516.9mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.191mm &lt; 0.254mm) Between Pad IC1-24(47.129mm,37.882mm) on Top Layer And Via (45.847mm,38.481mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.191mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1884.873mil|Location2.X=1896.123mil|Location1.Y=1467.722mil|Location2.Y=1481.169mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1884.873mil|Location2.X=1896.123mil|Location1.Y=1467.722mil|Location2.Y=1481.169mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.253mm &lt; 0.254mm) Between Pad IC1-24(47.129mm,37.882mm) on Top Layer And Via (48.467mm,37.258mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.253mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2258.104mil|Location2.X=2269.354mil|Location1.Y=1372.157mil|Location2.Y=1385.21mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2258.104mil|Location2.X=2269.354mil|Location1.Y=1372.157mil|Location2.Y=1385.21mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.154mm &lt; 0.254mm) Between Pad IC1-47(56.658mm,35.424mm) on Top Layer And Via (57.887mm,35.223mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.154mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2159.238mil|Location2.X=2170.488mil|Location1.Y=1614.891mil|Location2.Y=1626.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2159.238mil|Location2.X=2170.488mil|Location1.Y=1614.891mil|Location2.Y=1626.141mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad IC1-8(54.536mm,40.357mm) on Top Layer And Via (55.27mm,41.444mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2159.238mil|Location2.X=2170.488mil|Location1.Y=1614.891mil|Location2.Y=1626.141mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2159.238mil|Location2.X=2170.488mil|Location1.Y=1614.891mil|Location2.Y=1626.141mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.097mm &lt; 0.254mm) Between Pad IC1-9(54.183mm,40.711mm) on Top Layer And Via (55.27mm,41.444mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.097mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1277.824mil|Location2.X=1289.074mil|Location1.Y=1485.477mil|Location2.Y=1496.727mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1277.824mil|Location2.X=1289.074mil|Location1.Y=1485.477mil|Location2.Y=1496.727mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad J5-1(31.698mm,38.199mm) on Top Layer And Pad J5-2(31.698mm,37.549mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221.855mil|Location2.X=1233.105mil|Location1.Y=1513.528mil|Location2.Y=1524.778mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221.855mil|Location2.X=1233.105mil|Location1.Y=1513.528mil|Location2.Y=1524.778mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.172mm &lt; 0.254mm) Between Pad J5-1(31.698mm,38.199mm) on Top Layer And Pad J5-9(31.178mm,39.324mm) on Multi-Layer [Top Solder] Mask Sliver [0.172mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1206.832mil|Location2.X=1218.082mil|Location1.Y=1459.887mil|Location2.Y=1471.137mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1206.832mil|Location2.X=1218.082mil|Location1.Y=1459.887mil|Location2.Y=1471.137mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad J5-2(31.698mm,37.549mm) on Top Layer And Pad J5-3(31.698mm,36.899mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1277.824mil|Location2.X=1289.074mil|Location1.Y=1434.296mil|Location2.Y=1445.546mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1277.824mil|Location2.X=1289.074mil|Location1.Y=1434.296mil|Location2.Y=1445.546mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad J5-3(31.698mm,36.899mm) on Top Layer And Pad J5-4(31.698mm,36.249mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1206.832mil|Location2.X=1218.082mil|Location1.Y=1408.706mil|Location2.Y=1419.956mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1206.832mil|Location2.X=1218.082mil|Location1.Y=1408.706mil|Location2.Y=1419.956mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.047mm &lt; 0.254mm) Between Pad J5-4(31.698mm,36.249mm) on Top Layer And Pad J5-5(31.698mm,35.599mm) on Top Layer [Top Solder] Mask Sliver [0.047mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221.855mil|Location2.X=1233.105mil|Location1.Y=1380.654mil|Location2.Y=1391.904mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1221.855mil|Location2.X=1233.105mil|Location1.Y=1380.654mil|Location2.Y=1391.904mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.172mm &lt; 0.254mm) Between Pad J5-5(31.698mm,35.599mm) on Top Layer And Pad J5-6(31.178mm,34.474mm) on Multi-Layer [Top Solder] Mask Sliver [0.172mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1202.525mil|Location2.X=1213.775mil|Location1.Y=1399.375mil|Location2.Y=1410.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1202.525mil|Location2.X=1213.775mil|Location1.Y=1399.375mil|Location2.Y=1410.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.219mm &lt; 0.254mm) Between Pad J5-5(31.698mm,35.599mm) on Top Layer And Via (30.226mm,35.687mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.219mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1144.375mil|Location2.X=1155.625mil|Location1.Y=1494.375mil|Location2.Y=1505.625mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1144.375mil|Location2.X=1155.625mil|Location1.Y=1494.375mil|Location2.Y=1505.625mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.059mm &lt; 0.254mm) Between Via (29.21mm,37.719mm) from Top Layer to Bottom Layer And Via (29.21mm,38.481mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.059mm] / [Bottom Solder] Mask Sliver [0.059mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2023.668mil|Location2.X=2034.918mil|Location1.Y=1435.372mil|Location2.Y=1446.622mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2023.668mil|Location2.X=2034.918mil|Location1.Y=1435.372mil|Location2.Y=1446.622mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.076mm &lt; 0.254mm) Between Via (51.272mm,36.881mm) from Top Layer to Bottom Layer And Via (51.816mm,36.322mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.076mm] / [Bottom Solder] Mask Sliver [0.076mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2184.875mil|Location2.X=2196.125mil|Location1.Y=1626.029mil|Location2.Y=1637.279mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2184.875mil|Location2.X=2196.125mil|Location1.Y=1626.029mil|Location2.Y=1637.279mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.033mm &lt; 0.254mm) Between Via (55.27mm,41.444mm) from Top Layer to Bottom Layer And Via (56.007mm,41.444mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.033mm] / [Bottom Solder] Mask Sliver [0.033mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2254.372mil|Location2.X=2265.867mil|Location1.Y=1576.596mil|Location2.Y=1587.846mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2254.372mil|Location2.X=2265.867mil|Location1.Y=1576.596mil|Location2.Y=1587.846mil|Absolute=True">Minimum Solder Mask Sliver Constraint: (0.099mm &lt; 0.254mm) Between Via (57.15mm,40.499mm) from Top Layer to Bottom Layer And Via (57.658mm,39.878mm) from Top Layer to Bottom Layer [Top Solder] Mask Sliver [0.099mm] / [Bottom Solder] Mask Sliver [0.099mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDQ5X2UPAPF5ELDU41KD2I1BX1G3LIQ1GN1AK54IA2M2VEJWJFBAJ"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk To Solder Mask (Clearance=0.15mm) (IsPad),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.769mil|Location2.X=1856.924mil|Location1.Y=1294.038mil|Location2.Y=1301.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.769mil|Location2.X=1856.924mil|Location1.Y=1294.038mil|Location2.Y=1301.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C10-1(47.625mm,33.412mm) on Bottom Layer And Track (47.075mm,32.212mm)(47.075mm,32.812mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1893.076mil|Location2.X=1900.231mil|Location1.Y=1294.038mil|Location2.Y=1301.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1893.076mil|Location2.X=1900.231mil|Location1.Y=1294.038mil|Location2.Y=1301.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C10-1(47.625mm,33.412mm) on Bottom Layer And Track (48.175mm,32.212mm)(48.175mm,32.812mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.769mil|Location2.X=1856.924mil|Location1.Y=1259.003mil|Location2.Y=1266.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1849.769mil|Location2.X=1856.924mil|Location1.Y=1259.003mil|Location2.Y=1266.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C10-2(47.625mm,31.622mm) on Bottom Layer And Track (47.075mm,32.212mm)(47.075mm,32.812mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1893.076mil|Location2.X=1900.231mil|Location1.Y=1259.003mil|Location2.Y=1266.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1893.076mil|Location2.X=1900.231mil|Location1.Y=1259.003mil|Location2.Y=1266.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C10-2(47.625mm,31.622mm) on Bottom Layer And Track (48.175mm,32.212mm)(48.175mm,32.812mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.769mil|Location2.X=1831.924mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.769mil|Location2.X=1831.924mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C1-1(46.99mm,41.54mm) on Bottom Layer And Track (46.44mm,40.34mm)(46.44mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1868.076mil|Location2.X=1875.231mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1868.076mil|Location2.X=1875.231mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C1-1(46.99mm,41.54mm) on Bottom Layer And Track (47.54mm,40.34mm)(47.54mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1539.572mil|Location2.X=1546.727mil|Location1.Y=1303.881mil|Location2.Y=1311.036mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1539.572mil|Location2.X=1546.727mil|Location1.Y=1303.881mil|Location2.Y=1311.036mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C11-1(39.746mm,33.662mm) on Bottom Layer And Track (39.196mm,32.462mm)(39.196mm,33.062mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1582.879mil|Location2.X=1590.034mil|Location1.Y=1303.881mil|Location2.Y=1311.036mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1582.879mil|Location2.X=1590.034mil|Location1.Y=1303.881mil|Location2.Y=1311.036mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C11-1(39.746mm,33.662mm) on Bottom Layer And Track (40.296mm,32.462mm)(40.296mm,33.062mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1539.572mil|Location2.X=1546.727mil|Location1.Y=1268.846mil|Location2.Y=1276.001mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1539.572mil|Location2.X=1546.727mil|Location1.Y=1268.846mil|Location2.Y=1276.001mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C11-2(39.746mm,31.872mm) on Bottom Layer And Track (39.196mm,32.462mm)(39.196mm,33.062mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1582.879mil|Location2.X=1590.034mil|Location1.Y=1268.846mil|Location2.Y=1276.001mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1582.879mil|Location2.X=1590.034mil|Location1.Y=1268.846mil|Location2.Y=1276.001mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C11-2(39.746mm,31.872mm) on Bottom Layer And Track (40.296mm,32.462mm)(40.296mm,33.062mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.769mil|Location2.X=1831.924mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1824.769mil|Location2.X=1831.924mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C1-2(46.99mm,39.75mm) on Bottom Layer And Track (46.44mm,40.34mm)(46.44mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1868.076mil|Location2.X=1875.231mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1868.076mil|Location2.X=1875.231mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C1-2(46.99mm,39.75mm) on Bottom Layer And Track (47.54mm,40.34mm)(47.54mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.769mil|Location2.X=1466.924mil|Location1.Y=1304.038mil|Location2.Y=1311.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.769mil|Location2.X=1466.924mil|Location1.Y=1304.038mil|Location2.Y=1311.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C12-1(37.719mm,33.666mm) on Bottom Layer And Track (37.169mm,32.466mm)(37.169mm,33.066mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1503.076mil|Location2.X=1510.231mil|Location1.Y=1304.038mil|Location2.Y=1311.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1503.076mil|Location2.X=1510.231mil|Location1.Y=1304.038mil|Location2.Y=1311.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C12-1(37.719mm,33.666mm) on Bottom Layer And Track (38.269mm,32.466mm)(38.269mm,33.066mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.769mil|Location2.X=1466.924mil|Location1.Y=1269.003mil|Location2.Y=1276.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1459.769mil|Location2.X=1466.924mil|Location1.Y=1269.003mil|Location2.Y=1276.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C12-2(37.719mm,31.876mm) on Bottom Layer And Track (37.169mm,32.466mm)(37.169mm,33.066mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1503.076mil|Location2.X=1510.231mil|Location1.Y=1269.003mil|Location2.Y=1276.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1503.076mil|Location2.X=1510.231mil|Location1.Y=1269.003mil|Location2.Y=1276.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C12-2(37.719mm,31.876mm) on Bottom Layer And Track (38.269mm,32.466mm)(38.269mm,33.066mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2209.769mil|Location2.X=2216.924mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2209.769mil|Location2.X=2216.924mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C2-1(56.769mm,31.993mm) on Bottom Layer And Track (56.219mm,32.593mm)(56.219mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2253.076mil|Location2.X=2260.231mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2253.076mil|Location2.X=2260.231mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C2-1(56.769mm,31.993mm) on Bottom Layer And Track (57.319mm,32.593mm)(57.319mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2209.769mil|Location2.X=2216.924mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2209.769mil|Location2.X=2216.924mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C2-2(56.769mm,33.783mm) on Bottom Layer And Track (56.219mm,32.593mm)(56.219mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2253.076mil|Location2.X=2260.231mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2253.076mil|Location2.X=2260.231mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C2-2(56.769mm,33.783mm) on Bottom Layer And Track (57.319mm,32.593mm)(57.319mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1994.769mil|Location2.X=2001.924mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1994.769mil|Location2.X=2001.924mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C3-1(51.308mm,41.54mm) on Bottom Layer And Track (50.758mm,40.34mm)(50.758mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2038.076mil|Location2.X=2045.231mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2038.076mil|Location2.X=2045.231mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C3-1(51.308mm,41.54mm) on Bottom Layer And Track (51.858mm,40.34mm)(51.858mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1994.769mil|Location2.X=2001.924mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1994.769mil|Location2.X=2001.924mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C3-2(51.308mm,39.75mm) on Bottom Layer And Track (50.758mm,40.34mm)(50.758mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2038.076mil|Location2.X=2045.231mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2038.076mil|Location2.X=2045.231mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C3-2(51.308mm,39.75mm) on Bottom Layer And Track (51.858mm,40.34mm)(51.858mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1914.769mil|Location2.X=1921.924mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1914.769mil|Location2.X=1921.924mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C4-1(49.276mm,41.54mm) on Bottom Layer And Track (48.726mm,40.34mm)(48.726mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1958.076mil|Location2.X=1965.231mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1958.076mil|Location2.X=1965.231mil|Location1.Y=1614.038mil|Location2.Y=1621.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C4-1(49.276mm,41.54mm) on Bottom Layer And Track (49.826mm,40.34mm)(49.826mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1914.769mil|Location2.X=1921.924mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1914.769mil|Location2.X=1921.924mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C4-2(49.276mm,39.75mm) on Bottom Layer And Track (48.726mm,40.34mm)(48.726mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1958.076mil|Location2.X=1965.231mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1958.076mil|Location2.X=1965.231mil|Location1.Y=1579.003mil|Location2.Y=1586.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C4-2(49.276mm,39.75mm) on Bottom Layer And Track (49.826mm,40.34mm)(49.826mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2369.769mil|Location2.X=2376.924mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2369.769mil|Location2.X=2376.924mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C5-1(60.833mm,31.993mm) on Bottom Layer And Track (60.283mm,32.593mm)(60.283mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2413.076mil|Location2.X=2420.231mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2413.076mil|Location2.X=2420.231mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C5-1(60.833mm,31.993mm) on Bottom Layer And Track (61.383mm,32.593mm)(61.383mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2369.769mil|Location2.X=2376.924mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2369.769mil|Location2.X=2376.924mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C5-2(60.833mm,33.783mm) on Bottom Layer And Track (60.283mm,32.593mm)(60.283mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2413.076mil|Location2.X=2420.231mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2413.076mil|Location2.X=2420.231mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C5-2(60.833mm,33.783mm) on Bottom Layer And Track (61.383mm,32.593mm)(61.383mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2704.769mil|Location2.X=2711.924mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2704.769mil|Location2.X=2711.924mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C6-1(69.342mm,41.286mm) on Bottom Layer And Track (68.792mm,40.086mm)(68.792mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2748.076mil|Location2.X=2755.231mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2748.076mil|Location2.X=2755.231mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C6-1(69.342mm,41.286mm) on Bottom Layer And Track (69.892mm,40.086mm)(69.892mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2704.769mil|Location2.X=2711.924mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2704.769mil|Location2.X=2711.924mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C6-2(69.342mm,39.496mm) on Bottom Layer And Track (68.792mm,40.086mm)(68.792mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2748.076mil|Location2.X=2755.231mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2748.076mil|Location2.X=2755.231mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C6-2(69.342mm,39.496mm) on Bottom Layer And Track (69.892mm,40.086mm)(69.892mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2544.769mil|Location2.X=2551.924mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2544.769mil|Location2.X=2551.924mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C7-1(65.278mm,41.286mm) on Bottom Layer And Track (64.728mm,40.086mm)(64.728mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2588.076mil|Location2.X=2595.231mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2588.076mil|Location2.X=2595.231mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C7-1(65.278mm,41.286mm) on Bottom Layer And Track (65.828mm,40.086mm)(65.828mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2544.769mil|Location2.X=2551.924mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2544.769mil|Location2.X=2551.924mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C7-2(65.278mm,39.496mm) on Bottom Layer And Track (64.728mm,40.086mm)(64.728mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2588.076mil|Location2.X=2595.231mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2588.076mil|Location2.X=2595.231mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C7-2(65.278mm,39.496mm) on Bottom Layer And Track (65.828mm,40.086mm)(65.828mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2294.769mil|Location2.X=2301.924mil|Location1.Y=1568.806mil|Location2.Y=1575.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2294.769mil|Location2.X=2301.924mil|Location1.Y=1568.806mil|Location2.Y=1575.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C8-1(58.928mm,39.486mm) on Bottom Layer And Track (58.378mm,40.086mm)(58.378mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2338.076mil|Location2.X=2345.231mil|Location1.Y=1568.806mil|Location2.Y=1575.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2338.076mil|Location2.X=2345.231mil|Location1.Y=1568.806mil|Location2.Y=1575.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C8-1(58.928mm,39.486mm) on Bottom Layer And Track (59.478mm,40.086mm)(59.478mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2294.769mil|Location2.X=2301.924mil|Location1.Y=1603.841mil|Location2.Y=1610.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2294.769mil|Location2.X=2301.924mil|Location1.Y=1603.841mil|Location2.Y=1610.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C8-2(58.928mm,41.276mm) on Bottom Layer And Track (58.378mm,40.086mm)(58.378mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2338.076mil|Location2.X=2345.231mil|Location1.Y=1603.841mil|Location2.Y=1610.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2338.076mil|Location2.X=2345.231mil|Location1.Y=1603.841mil|Location2.Y=1610.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C8-2(58.928mm,41.276mm) on Bottom Layer And Track (59.478mm,40.086mm)(59.478mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2454.769mil|Location2.X=2461.924mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2454.769mil|Location2.X=2461.924mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C9-1(62.992mm,41.286mm) on Bottom Layer And Track (62.442mm,40.086mm)(62.442mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2498.076mil|Location2.X=2505.231mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2498.076mil|Location2.X=2505.231mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad C9-1(62.992mm,41.286mm) on Bottom Layer And Track (63.542mm,40.086mm)(63.542mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2454.769mil|Location2.X=2461.924mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2454.769mil|Location2.X=2461.924mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C9-2(62.992mm,39.496mm) on Bottom Layer And Track (62.442mm,40.086mm)(62.442mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2498.076mil|Location2.X=2505.231mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2498.076mil|Location2.X=2505.231mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad C9-2(62.992mm,39.496mm) on Bottom Layer And Track (63.542mm,40.086mm)(63.542mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2776.422mil|Location2.X=2783.578mil|Location1.Y=1361.757mil|Location2.Y=1368.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2776.422mil|Location2.X=2783.578mil|Location1.Y=1361.757mil|Location2.Y=1368.912mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.121mm &lt; 0.15mm) Between Pad D1-1(70.866mm,35.34mm) on Top Layer And Track (70.612mm,34.544mm)(70.866mm,34.29mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2776.422mil|Location2.X=2783.578mil|Location1.Y=1361.757mil|Location2.Y=1368.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2776.422mil|Location2.X=2783.578mil|Location1.Y=1361.757mil|Location2.Y=1368.912mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.121mm &lt; 0.15mm) Between Pad D1-1(70.866mm,35.34mm) on Top Layer And Track (70.612mm,34.544mm)(71.12mm,34.544mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2796.422mil|Location2.X=2803.578mil|Location1.Y=1361.757mil|Location2.Y=1368.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2796.422mil|Location2.X=2803.578mil|Location1.Y=1361.757mil|Location2.Y=1368.912mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.121mm &lt; 0.15mm) Between Pad D1-1(70.866mm,35.34mm) on Top Layer And Track (70.866mm,34.29mm)(71.12mm,34.544mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2786.422mil|Location2.X=2793.578mil|Location1.Y=1331.088mil|Location2.Y=1338.243mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2786.422mil|Location2.X=2793.578mil|Location1.Y=1331.088mil|Location2.Y=1338.243mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.121mm &lt; 0.15mm) Between Pad D1-2(70.866mm,33.24mm) on Top Layer And Track (70.866mm,34.036mm)(70.866mm,34.29mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2776.422mil|Location2.X=2783.578mil|Location1.Y=1541.757mil|Location2.Y=1548.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2776.422mil|Location2.X=2783.578mil|Location1.Y=1541.757mil|Location2.Y=1548.912mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.121mm &lt; 0.15mm) Between Pad D2-1(70.866mm,39.912mm) on Top Layer And Track (70.612mm,39.116mm)(70.866mm,38.862mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2776.422mil|Location2.X=2783.578mil|Location1.Y=1541.757mil|Location2.Y=1548.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2776.422mil|Location2.X=2783.578mil|Location1.Y=1541.757mil|Location2.Y=1548.912mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.121mm &lt; 0.15mm) Between Pad D2-1(70.866mm,39.912mm) on Top Layer And Track (70.612mm,39.116mm)(71.12mm,39.116mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2796.422mil|Location2.X=2803.578mil|Location1.Y=1541.757mil|Location2.Y=1548.912mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2796.422mil|Location2.X=2803.578mil|Location1.Y=1541.757mil|Location2.Y=1548.912mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.121mm &lt; 0.15mm) Between Pad D2-1(70.866mm,39.912mm) on Top Layer And Track (70.866mm,38.862mm)(71.12mm,39.116mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2786.422mil|Location2.X=2793.578mil|Location1.Y=1511.088mil|Location2.Y=1518.243mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2786.422mil|Location2.X=2793.578mil|Location1.Y=1511.088mil|Location2.Y=1518.243mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.121mm &lt; 0.15mm) Between Pad D2-2(70.866mm,37.812mm) on Top Layer And Track (70.866mm,38.608mm)(70.866mm,38.862mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.121mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1770.528mil|Location2.X=1775.465mil|Location1.Y=1764.532mil|Location2.Y=1769.468mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1770.528mil|Location2.X=1775.465mil|Location1.Y=1764.532mil|Location2.Y=1769.468mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.15mm) Between Pad J1-8(45.72mm,44.45mm) on Multi-Layer And Text "IC1" (44.78mm,44.882mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1784.276mil|Location2.X=1794.146mil|Location1.Y=1715.37mil|Location2.Y=1723.044mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1784.276mil|Location2.X=1794.146mil|Location1.Y=1715.37mil|Location2.Y=1723.044mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.119mm &lt; 0.15mm) Between Pad J1-8(45.72mm,44.45mm) on Multi-Layer And Text "R6" (45.364mm,42.799mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.119mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1631.716mil|Location2.X=1636.653mil|Location1.Y=1459.348mil|Location2.Y=1464.285mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1631.716mil|Location2.X=1636.653mil|Location1.Y=1459.348mil|Location2.Y=1464.285mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (Collision &lt; 0.15mm) Between Pad J3-2(40.894mm,37.592mm) on Multi-Layer And Text "D3" (42.291mm,36.474mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1246.161mil|Location2.X=1253.944mil|Location1.Y=1361.15mil|Location2.Y=1370.85mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1246.161mil|Location2.X=1253.944mil|Location1.Y=1361.15mil|Location2.Y=1370.85mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.14mm &lt; 0.15mm) Between Pad J5-6(31.178mm,34.474mm) on Multi-Layer And Track (31.898mm,34.799mm)(31.898mm,35.099mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.14mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1246.161mil|Location2.X=1253.853mil|Location1.Y=1534.582mil|Location2.Y=1544.325mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1246.161mil|Location2.X=1253.853mil|Location1.Y=1534.582mil|Location2.Y=1544.325mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.14mm &lt; 0.15mm) Between Pad J5-9(31.178mm,39.324mm) on Multi-Layer And Track (31.898mm,38.699mm)(31.898mm,38.999mm) on Top Overlay [Top Overlay] to [Top Solder] clearance [0.14mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2449.769mil|Location2.X=2456.924mil|Location1.Y=1309.038mil|Location2.Y=1316.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2449.769mil|Location2.X=2456.924mil|Location1.Y=1309.038mil|Location2.Y=1316.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R1-1(62.865mm,33.793mm) on Bottom Layer And Track (62.315mm,32.593mm)(62.315mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2493.076mil|Location2.X=2500.231mil|Location1.Y=1309.038mil|Location2.Y=1316.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2493.076mil|Location2.X=2500.231mil|Location1.Y=1309.038mil|Location2.Y=1316.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R1-1(62.865mm,33.793mm) on Bottom Layer And Track (63.415mm,32.593mm)(63.415mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2449.769mil|Location2.X=2456.924mil|Location1.Y=1274.003mil|Location2.Y=1281.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2449.769mil|Location2.X=2456.924mil|Location1.Y=1274.003mil|Location2.Y=1281.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R1-2(62.865mm,32.003mm) on Bottom Layer And Track (62.315mm,32.593mm)(62.315mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2493.076mil|Location2.X=2500.231mil|Location1.Y=1274.003mil|Location2.Y=1281.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2493.076mil|Location2.X=2500.231mil|Location1.Y=1274.003mil|Location2.Y=1281.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R1-2(62.865mm,32.003mm) on Bottom Layer And Track (63.415mm,32.593mm)(63.415mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2289.769mil|Location2.X=2296.924mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2289.769mil|Location2.X=2296.924mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R2-1(58.801mm,31.993mm) on Bottom Layer And Track (58.251mm,32.593mm)(58.251mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2333.076mil|Location2.X=2340.231mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2333.076mil|Location2.X=2340.231mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R2-1(58.801mm,31.993mm) on Bottom Layer And Track (59.351mm,32.593mm)(59.351mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2289.769mil|Location2.X=2296.924mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2289.769mil|Location2.X=2296.924mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R2-2(58.801mm,33.783mm) on Bottom Layer And Track (58.251mm,32.593mm)(58.251mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2333.076mil|Location2.X=2340.231mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2333.076mil|Location2.X=2340.231mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R2-2(58.801mm,33.783mm) on Bottom Layer And Track (59.351mm,32.593mm)(59.351mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2624.769mil|Location2.X=2631.924mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2624.769mil|Location2.X=2631.924mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R3-1(67.31mm,41.286mm) on Bottom Layer And Track (66.76mm,40.086mm)(66.76mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2668.076mil|Location2.X=2675.231mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2668.076mil|Location2.X=2675.231mil|Location1.Y=1604.038mil|Location2.Y=1611.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R3-1(67.31mm,41.286mm) on Bottom Layer And Track (67.86mm,40.086mm)(67.86mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2624.769mil|Location2.X=2631.924mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2624.769mil|Location2.X=2631.924mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R3-2(67.31mm,39.496mm) on Bottom Layer And Track (66.76mm,40.086mm)(66.76mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2668.076mil|Location2.X=2675.231mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2668.076mil|Location2.X=2675.231mil|Location1.Y=1569.003mil|Location2.Y=1576.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R3-2(67.31mm,39.496mm) on Bottom Layer And Track (67.86mm,40.086mm)(67.86mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2609.769mil|Location2.X=2616.924mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2609.769mil|Location2.X=2616.924mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R4-1(66.929mm,31.993mm) on Bottom Layer And Track (66.379mm,32.593mm)(66.379mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2653.076mil|Location2.X=2660.231mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2653.076mil|Location2.X=2660.231mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R4-1(66.929mm,31.993mm) on Bottom Layer And Track (67.479mm,32.593mm)(67.479mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2609.769mil|Location2.X=2616.924mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2609.769mil|Location2.X=2616.924mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R4-2(66.929mm,33.783mm) on Bottom Layer And Track (66.379mm,32.593mm)(66.379mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2653.076mil|Location2.X=2660.231mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2653.076mil|Location2.X=2660.231mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R4-2(66.929mm,33.783mm) on Bottom Layer And Track (67.479mm,32.593mm)(67.479mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2529.769mil|Location2.X=2536.924mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2529.769mil|Location2.X=2536.924mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R5-1(64.897mm,31.993mm) on Bottom Layer And Track (64.347mm,32.593mm)(64.347mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2573.076mil|Location2.X=2580.231mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2573.076mil|Location2.X=2580.231mil|Location1.Y=1273.806mil|Location2.Y=1280.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R5-1(64.897mm,31.993mm) on Bottom Layer And Track (65.447mm,32.593mm)(65.447mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2529.769mil|Location2.X=2536.924mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2529.769mil|Location2.X=2536.924mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R5-2(64.897mm,33.783mm) on Bottom Layer And Track (64.347mm,32.593mm)(64.347mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2573.076mil|Location2.X=2580.231mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2573.076mil|Location2.X=2580.231mil|Location1.Y=1308.841mil|Location2.Y=1315.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R5-2(64.897mm,33.783mm) on Bottom Layer And Track (65.447mm,32.593mm)(65.447mm,33.193mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.769mil|Location2.X=1746.924mil|Location1.Y=1578.806mil|Location2.Y=1585.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.769mil|Location2.X=1746.924mil|Location1.Y=1578.806mil|Location2.Y=1585.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R6-1(44.831mm,39.74mm) on Bottom Layer And Track (44.281mm,40.34mm)(44.281mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1783.076mil|Location2.X=1790.231mil|Location1.Y=1578.806mil|Location2.Y=1585.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1783.076mil|Location2.X=1790.231mil|Location1.Y=1578.806mil|Location2.Y=1585.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R6-1(44.831mm,39.74mm) on Bottom Layer And Track (45.381mm,40.34mm)(45.381mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.769mil|Location2.X=1746.924mil|Location1.Y=1613.841mil|Location2.Y=1620.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1739.769mil|Location2.X=1746.924mil|Location1.Y=1613.841mil|Location2.Y=1620.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R6-2(44.831mm,41.53mm) on Bottom Layer And Track (44.281mm,40.34mm)(44.281mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1783.076mil|Location2.X=1790.231mil|Location1.Y=1613.841mil|Location2.Y=1620.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1783.076mil|Location2.X=1790.231mil|Location1.Y=1613.841mil|Location2.Y=1620.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R6-2(44.831mm,41.53mm) on Bottom Layer And Track (45.381mm,40.34mm)(45.381mm,40.94mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2374.769mil|Location2.X=2381.924mil|Location1.Y=1568.806mil|Location2.Y=1575.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2374.769mil|Location2.X=2381.924mil|Location1.Y=1568.806mil|Location2.Y=1575.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R7-1(60.96mm,39.486mm) on Bottom Layer And Track (60.41mm,40.086mm)(60.41mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2418.076mil|Location2.X=2425.231mil|Location1.Y=1568.806mil|Location2.Y=1575.962mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2418.076mil|Location2.X=2425.231mil|Location1.Y=1568.806mil|Location2.Y=1575.962mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R7-1(60.96mm,39.486mm) on Bottom Layer And Track (61.51mm,40.086mm)(61.51mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2374.769mil|Location2.X=2381.924mil|Location1.Y=1603.841mil|Location2.Y=1610.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2374.769mil|Location2.X=2381.924mil|Location1.Y=1603.841mil|Location2.Y=1610.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R7-2(60.96mm,41.276mm) on Bottom Layer And Track (60.41mm,40.086mm)(60.41mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2418.076mil|Location2.X=2425.231mil|Location1.Y=1603.841mil|Location2.Y=1610.997mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2418.076mil|Location2.X=2425.231mil|Location1.Y=1603.841mil|Location2.Y=1610.997mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R7-2(60.96mm,41.276mm) on Bottom Layer And Track (61.51mm,40.086mm)(61.51mm,40.686mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.769mil|Location2.X=1386.924mil|Location1.Y=1304.038mil|Location2.Y=1311.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.769mil|Location2.X=1386.924mil|Location1.Y=1304.038mil|Location2.Y=1311.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R8-1(35.687mm,33.666mm) on Bottom Layer And Track (35.137mm,32.466mm)(35.137mm,33.066mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.076mil|Location2.X=1430.231mil|Location1.Y=1304.038mil|Location2.Y=1311.194mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.076mil|Location2.X=1430.231mil|Location1.Y=1304.038mil|Location2.Y=1311.194mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.145mm &lt; 0.15mm) Between Pad R8-1(35.687mm,33.666mm) on Bottom Layer And Track (36.237mm,32.466mm)(36.237mm,33.066mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.145mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.769mil|Location2.X=1386.924mil|Location1.Y=1269.003mil|Location2.Y=1276.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1379.769mil|Location2.X=1386.924mil|Location1.Y=1269.003mil|Location2.Y=1276.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R8-2(35.687mm,31.876mm) on Bottom Layer And Track (35.137mm,32.466mm)(35.137mm,33.066mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.076mil|Location2.X=1430.231mil|Location1.Y=1269.003mil|Location2.Y=1276.159mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1423.076mil|Location2.X=1430.231mil|Location1.Y=1269.003mil|Location2.Y=1276.159mil|Absolute=True">Silk To Solder Mask Clearance Constraint: (0.135mm &lt; 0.15mm) Between Pad R8-2(35.687mm,31.876mm) on Bottom Layer And Track (36.237mm,32.466mm)(36.237mm,33.066mm) on Bottom Overlay [Bottom Overlay] to [Bottom Solder] clearance [0.135mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDP2OBZ3ZKYUAQBOT1ESMVER0YRINV2Y5252IG5BIQWSCOSCOYQOUI"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Silk to Silk (Clearance=0.15mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1760.532mil|Location2.X=1765.468mil|Location1.Y=1800.681mil|Location2.Y=1805.618mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1760.532mil|Location2.X=1765.468mil|Location1.Y=1800.681mil|Location2.Y=1805.618mil|Absolute=True">Silk To Silk Clearance Constraint: (Collision &lt; 0.15mm) Between Text "IC1" (44.78mm,44.882mm) on Top Overlay And Track (26.42mm,45.8mm)(77.72mm,45.8mm) on Top Overlay Silk Text to Silk Clearance [0mm]</acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1376.416mil|Location2.X=1383.571mil|Location1.Y=1689.124mil|Location2.Y=1696.28mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1376.416mil|Location2.X=1383.571mil|Location1.Y=1689.124mil|Location2.Y=1696.28mil|Absolute=True">Silk To Silk Clearance Constraint: (0.011mm &lt; 0.15mm) Between Text "J3" (34.544mm,42.164mm) on Top Overlay And Track (26.42mm,43.1mm)(77.72mm,43.1mm) on Top Overlay Silk Text to Silk Clearance [0.011mm]</acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="IDKN1XQXO5Z3FPFN2T3XD2G4HO4FAW50MCJVY3IYJBFYECXSA0GHCD"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Net Antennae (Tolerance=0mm) (All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1768.836mil|Location2.X=1794.396mil|Location1.Y=1670.594mil|Location2.Y=1708.045mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=1768.836mil|Location2.X=1794.396mil|Location1.Y=1670.594mil|Location2.Y=1708.045mil|Absolute=True">Net Antennae: Track (45.167mm,42.672mm)(48.543mm,39.296mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2096.657mil|Location2.X=2130.788mil|Location1.Y=1622.091mil|Location2.Y=1673.675mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2096.657mil|Location2.X=2130.788mil|Location1.Y=1622.091mil|Location2.Y=1673.675mil|Absolute=True">Net Antennae: Track (51.308mm,41.54mm)(53.594mm,41.54mm) on Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2252.657mil|Location2.X=2295.496mil|Location1.Y=1552.658mil|Location2.Y=1618.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2252.657mil|Location2.X=2295.496mil|Location1.Y=1552.658mil|Location2.Y=1618.88mil|Absolute=True">Net Antennae: Via (57.658mm,39.878mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2772.657mil|Location2.X=2815.496mil|Location1.Y=1232.658mil|Location2.Y=1298.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2772.657mil|Location2.X=2815.496mil|Location1.Y=1232.658mil|Location2.Y=1298.88mil|Absolute=True">Net Antennae: Via (70.866mm,31.75mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2942.657mil|Location2.X=2985.496mil|Location1.Y=1427.658mil|Location2.Y=1493.88mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=G:\My Drive\My Drive\Desktop\Altium Project Files\STM32F103_Blue_Pill\STM32F103_Blue_Pill_V_2.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2942.657mil|Location2.X=2985.496mil|Location1.Y=1427.658mil|Location2.Y=1493.88mil|Absolute=True">Net Antennae: Via (75.184mm,36.703mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>

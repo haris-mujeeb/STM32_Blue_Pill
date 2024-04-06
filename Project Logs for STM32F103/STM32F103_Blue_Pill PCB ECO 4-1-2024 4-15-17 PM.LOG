@@ -1,0 +1,4 @@
+Change Component DesignItemId : Designator=S1 Old DesignItemId=CMP-011-00069-1 New DesignItemId=CMP-011-00069-3
+Change Component Designator: OldDesignator=C? NewDesignator=C5
+Change Managed Component Library Link : Designator=S1 Old VaultGUID=D0919A70-71F9-4A8F-9AAE-C2023AD986C1 New VaultGUID=D0919A70-71F9-4A8F-9AAE-C2023AD986C1 Old ItemGUID=ffa2636f-09ce-4ee2-ab56-7585d605ec4a New ItemGUID=ffa2636f-09ce-4ee2-ab56-7585d605ec4a Old RevisionGUID=26efaa10-3ba0-4b92-8657-ac5d274b10b4 New RevisionGUID=bd90244e-fc4a-440a-808f-7f1e28e428ab
+Added Pin To Net: NetName=GND Pin=C5-1

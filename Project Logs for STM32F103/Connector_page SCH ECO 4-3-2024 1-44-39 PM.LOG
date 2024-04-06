@@ -1,0 +1,5 @@
+Added Rule: Name=DiffPair_90DiffPairsRouting
+Added Rule: Name=RoutingVias
+Added Rule: Name=Width
+Modified Rule: Name=Schematic Routing Via Style
+Modified Rule: Name=Schematic Width Constraint

@@ -1,0 +1,62 @@
+Removed Pin From Net: NetName=GND Pin=J5-1
+Removed Pin From Net: NetName=SWCLK Pin=J5-2
+Removed Pin From Net: NetName=SWDIO Pin=J5-3
+Removed Pin From Net: NetName=+3V3 Pin=J5-4
+Removed Member From Class: ClassName=Controller_page Member=J5
+Change Component Footprint: Designator=P? Old Footprint=61300911121 New Footprint=61300911121
+Change Component Footprint: Designator=P? Old Footprint=61300911121 New Footprint=61300911121
+Change Component Footprint: Designator=P? Old Footprint=61300911121 New Footprint=61300911121
+Change Component Footprint: Designator=P? Old Footprint=61300911121 New Footprint=61300911121
+Change Component Designator: OldDesignator=* NewDesignator=*1
+Change Component Designator: OldDesignator=D5 NewDesignator=D3
+Change Component Designator: OldDesignator=P? NewDesignator=P1
+Change Component Designator: OldDesignator=P? NewDesignator=P2
+Change Component Designator: OldDesignator=P? NewDesignator=P3
+Change Component Designator: OldDesignator=P? NewDesignator=P4
+Added Component: Designator=P5(61300411121)
+Add component (AddParameter): Name = "Color"; Value = "Black"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Connector Type"; Value = "Male Pin"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact Material"; Value = "Copper"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact Mating Length"; Value = "5.9944mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact Plating"; Value = "Gold"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Contact Resistance"; Value = "20mO"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Current Rating"; Value = "3A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Gender"; Value = "Male"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Height"; Value = "8.89mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Free"; Value = "Lead Free"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Lead Pitch"; Value = "2.54mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = "105°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = "-40°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mount"; Value = "Through Hole"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "NexarPartId"; Value = "32855522"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Contacts"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Pins"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Positions"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Number of Rows"; Value = "1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Operating Supply Voltage"; Value = "250V"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Orientation"; Value = "Vertical"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Packaging"; Value = "Bulk"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pitch"; Value = "2.54mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "REACH SVHC"; Value = "Unknown"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS"; Value = "Compliant"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Termination"; Value = "Solder"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = "250V"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=P5-1
+Added Pin To Net: NetName=SWCLK Pin=P5-2
+Added Pin To Net: NetName=SWDIO Pin=P5-3
+Added Pin To Net: NetName=+3V3 Pin=P5-4
+Add Pin To Net: Unknown Pin: Pin S1-1
+Add Pin To Net: Unknown Pin: Pin S1-3
+Add Pin To Net: Unknown Pin: Pin S1-4
+Add Pin To Net: Unknown Pin: Pin U1-1
+Add Pin To Net: Unknown Pin: Pin U1-2
+Add Pin To Net: Unknown Pin: Pin U1-3
+Added Member To Class: ClassName=Controller_page Member=Component D1 Power Supply
+Added Member To Class: ClassName=Controller_page Member=Component D2 Test
+Added Member To Class: ClassName=Controller_page Member=Component P1 61300911121
+Added Member To Class: ClassName=Controller_page Member=Component P2 61300911121
+Added Member To Class: ClassName=Controller_page Member=Component P3 61300911121
+Added Member To Class: ClassName=Controller_page Member=Component P4 61300911121
+Added Member To Class: ClassName=Controller_page Member=Component P5 61300411121
+Add Class Member: Failed to add class member : Component S1 SW_PB_SMD
+Add Class Member: Failed to add class member : Component U1 XC6206P332MR

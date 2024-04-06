@@ -1,0 +1,15 @@
+Change Component Comment : Designator=J3 Old Comment=2x3P  New Comment=2x3P
+Added Component: Designator=Y1(MC-30632.7680K-A0:ROHS-Footprint-1)
+Add component (AddParameter): Name = "Case/Package"; Value = "4-SOJ 5.50mm pitch"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ESR"; Value = "50k"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Frequency"; Value = "32.768kHz"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Load Capacitance"; Value = "12.5pF"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = "85°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = "-40°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "PARALLEL - FUNDAMENTAL"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pins"; Value = "4"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS Compliant"; Value = "Yes"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=XTALC Pin=Y1-1
+Added Pin To Net: NetName=NetC7_2 Pin=Y1-2
+Added Member To Class: ClassName=Connector_page Member=Component J2 2-826646-0
+Added Member To Class: ClassName=Controller_page Member=Component Y1 MC-30632.7680K-A0:ROHS

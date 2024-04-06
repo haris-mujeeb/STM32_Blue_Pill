@@ -1,0 +1,4 @@
+Added Pin To Net: NetName=USB_D_P Pin=IC1-33
+Added Pin To Net: NetName=USB_D_L Pin=J2-8
+Added Pin To Net: NetName=USB_D_L Pin=J5-2
+Change Net Name : Old Net Name=USB_D_P New Net Name=USB_D_H

@@ -1,0 +1,3 @@
+Change Component DesignItemId : Designator=Y1 Old DesignItemId=CMP-003-00031-9 New DesignItemId=CMP-003-00031-10
+Change Component Footprint: Designator=Y1 Old Footprint=MC-30632.7680K-A0:ROHS-Footprint-1 New Footprint=MC-30632.7680K-A0:ROHS-Footprint-1
+Change Managed Component Library Link : Designator=Y1 Old VaultGUID=D0919A70-71F9-4A8F-9AAE-C2023AD986C1 New VaultGUID=D0919A70-71F9-4A8F-9AAE-C2023AD986C1 Old ItemGUID=b7c2618e-0980-4b49-97f4-c35f67ecd6fd New ItemGUID=b7c2618e-0980-4b49-97f4-c35f67ecd6fd Old RevisionGUID=BB3BE8E7-9CEA-4AD8-9665-9680C9733507 New RevisionGUID=82FFBE87-23A3-4048-8340-7E7CDFEB5A4D

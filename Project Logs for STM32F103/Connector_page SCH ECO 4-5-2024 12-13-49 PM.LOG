@@ -1,0 +1,3 @@
+Removed Rule: Name=Width
+Added Differential Pair: Name=USB_DiffPair_90
+Added Rule: Name=DiffPair_90DiffPairsRouting

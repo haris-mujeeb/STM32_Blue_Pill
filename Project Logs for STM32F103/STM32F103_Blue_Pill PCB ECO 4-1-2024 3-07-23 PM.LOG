@@ -1,0 +1,41 @@
+Removed Pin From Net: NetName=VCCIN Pin=*3-1
+Removed Pin From Net: NetName=D_N Pin=*3-2
+Removed Pin From Net: NetName=D_P Pin=*3-3
+Removed Pin From Net: NetName=GND Pin=*3-5
+Removed Pin From Net: NetName=GND Pin=*3-6
+Removed Pin From Net: NetName=GND Pin=*3-7
+Removed Pin From Net: NetName=GND Pin=*3-8
+Removed Pin From Net: NetName=GND Pin=*3-9
+Removed Member From Class: ClassName=Controller_page Member=*3
+Removed Member From Class: ClassName=Controller_page Member=J1
+Removed Member From Class: ClassName=Controller_page Member=J2
+Removed Member From Class: ClassName=Controller_page Member=J3
+Removed Member From Class: ClassName=Controller_page Member=J4
+Removed Member From Class: ClassName=Controller_page Member=R8
+Added Component: Designator=*1(USB 2.0 Tupe B Micro)
+Add component (AddParameter): Name = "Case/Package"; Value = "USB 2.0"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Connector Type"; Value = "Micro-B"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Gender"; Value = "Female"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Current Rating"; Value = "1A"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Max Operating Temperature"; Value = "85°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Min Operating Temperature"; Value = "-25°C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mounting Technology"; Value = "SMD"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Pins"; Value = "9"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RoHS Compliant"; Value = "Yes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Voltage Rating"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VCCIN Pin=*1-1
+Added Pin To Net: NetName=D_N Pin=*1-2
+Added Pin To Net: NetName=D_P Pin=*1-3
+Added Pin To Net: NetName=GND Pin=*1-5
+Added Pin To Net: NetName=GND Pin=*1-6
+Added Pin To Net: NetName=GND Pin=*1-7
+Added Pin To Net: NetName=GND Pin=*1-8
+Added Pin To Net: NetName=GND Pin=*1-9
+Add Pin To Net: Unknown Pin: Pin S1-1
+Add Pin To Net: Unknown Pin: Pin S1-3
+Add Pin To Net: Unknown Pin: Pin S1-4
+Added Pin To Net: NetName=GND Pin=U1-1
+Added Pin To Net: NetName=+3V3 Pin=U1-2
+Added Pin To Net: NetName=+5V Pin=U1-3
+Added Class: Name=Connector_page
+Add Class Member: Failed to add class member : Component S1 SW_PB_SMD

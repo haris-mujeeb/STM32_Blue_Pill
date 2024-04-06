@@ -1,0 +1,21 @@
+Change Component DesignItemId : Designator=C7 Old DesignItemId=CMP-001-00080-4 New DesignItemId=CMP-001-00080-5
+Change Component DesignItemId : Designator=Y1 Old DesignItemId=CMP-003-00031-7 New DesignItemId=CMP-003-00031-11
+Change Component Footprint: Designator=C7 Old Footprint=CAPC0805(2012)145_L New Footprint=CAPC0805(2012)145_L
+Change Component Footprint: Designator=Y1 Old Footprint=MC-30632.7680K-A0:ROHS-Footprint-1 New Footprint=MC-30632.7680K-A0:ROHS-Footprint-1
+Change Component Designator: OldDesignator=J2 NewDesignator=  
+Change Managed Component Library Link : Designator=C7 Old VaultGUID=D0919A70-71F9-4A8F-9AAE-C2023AD986C1 New VaultGUID=D0919A70-71F9-4A8F-9AAE-C2023AD986C1 Old ItemGUID=DC68E189-99F2-4C48-AA6E-19A4B7D466F4 New ItemGUID=DC68E189-99F2-4C48-AA6E-19A4B7D466F4 Old RevisionGUID=FCCB7740-3E69-4ADC-8376-020B9F979A02 New RevisionGUID=1E848CB5-9417-4552-990C-C5757D6AA695
+Change Managed Component Library Link : Designator=Y1 Old VaultGUID=D0919A70-71F9-4A8F-9AAE-C2023AD986C1 New VaultGUID=D0919A70-71F9-4A8F-9AAE-C2023AD986C1 Old ItemGUID=b7c2618e-0980-4b49-97f4-c35f67ecd6fd New ItemGUID=b7c2618e-0980-4b49-97f4-c35f67ecd6fd Old RevisionGUID=97AB6183-A615-408B-9C36-1BAC6AF17545 New RevisionGUID=2DCEF541-4BD1-4023-952C-04C3E37F8A56
+Change component parameters: Designator = "C7" ("C7"); Footprint = "CAPC0805(2012)145_L"; UniqueID = "\XQITFOUB" ("\XQITFOUB")
+Change component parameters (AddParameter): Name = "Capacitor Type"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Case/Package"; Value = "0805"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Max Operating Temperature"; Value = "85°C"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Min Operating Temperature"; Value = "-55°C"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mounting Technology"; Value = "SMT"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Pins"; Value = "2"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ripple Current"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Ripple Current (AC)"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "RoHS Compliant"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Tolerance"; Value = "20%"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = "4.7µF"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Voltage Rating"; Value = "25V"; VariantName = "[No Variations]"
+Added Rule: Name=DiffPair_90DiffPairsRouting_2
