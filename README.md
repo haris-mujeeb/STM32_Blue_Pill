@@ -1,7 +1,8 @@
+Dev board for STM32F103C8T6 using Altium. 
 ![image](https://github.com/haris-mujeeb/STM32_Blue_Pill/assets/57053470/8761b4e2-45a7-4672-9102-fdf19b9724ec)
 ![image](https://github.com/haris-mujeeb/STM32_Blue_Pill/assets/57053470/21f17723-61de-4bc1-96d4-f423a5b1942e)
 
-Dev board for STM32F103C8T6 using extended parts from JLCPCB Parts Library.
+All components are sourced from JLCPCB Parts Library (extended parts).
 
 ## Bill of Material:
 | Component                         | Description                                                                             | Designator                                        | Footprint                           | LibRef                           | Quantity |
